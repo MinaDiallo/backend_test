@@ -1,5 +1,4 @@
 # Requirements
-## Test fork
 
 - Node.js v18+
 - GitHub account and client
