@@ -20,7 +20,13 @@ async function createItem(itemData = {}) {
  * @param nothing
  * @return {Object} all items
  */
-async function getAllItems() {
+async function getAllItems(filtre) {
+	if (filtre && filtre === 'active') {
+		return items.filter((i) => i.isActive);
+	}
+	if (filtre && filtre === 'inactive') {
+		return items.filter((i) => !i.isActive);
+	}
 	return items;
 }
 

@@ -31,7 +31,8 @@ async function createItem(req, res, next) {
  */
 async function getAllItems(req, res, next) {
 	// add await for wait a Promise
-	const items = await service.getAllItems();
+	// add a query filter
+	const items = await service.getAllItems(req.query.filter_by);
 	return res.json({ items });
 }
 
