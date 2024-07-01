@@ -18,7 +18,7 @@ mongoose
 		try {
 			// remove collection when app is start, dev environnement
 			mongoose.connection.db.dropCollection('items', function (err, result) {});
-			// insert into db a initial data
+			// insert into db initial data
 			initial_items.forEach(async (i) => {
 				const item = await Item.create(i);
 			});
