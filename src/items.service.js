@@ -56,4 +56,11 @@ async function deleteItem(item) {
 	items = items.filter((i) => i.id !== item.id);
 }
 
-module.exports = { createItem, getAllItems, findItem, updateItem, deleteItem };
+module.exports = {
+	createItem,
+	getAllItems,
+	findItem,
+	updateItem,
+	deleteItem,
+	items,
+};
