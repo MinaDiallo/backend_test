@@ -8,7 +8,7 @@ const uri = process.env.DB_HOST;
 // get a item Model
 const Item = require('./models/itemModel');
 // get a initial data
-const initial_items = require('./items.service').items;
+const initial_items = require('./items.service').initial_items;
 
 mongoose
 	.connect(uri)
@@ -16,6 +16,8 @@ mongoose
 		console.log('conneted to database');
 		server.on('error', handleError);
 		try {
+			// remove collection when app is start, dev environnement
+			mongoose.connection.db.dropCollection('items', function (err, result) {});
 			// insert into db a initial data
 			initial_items.forEach(async (i) => {
 				const item = await Item.create(i);

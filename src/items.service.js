@@ -2,17 +2,28 @@ const fs = require('fs');
 const path = require('path');
 const itemsFilename = process.env.ITEMS_FILENAME || 'items.json';
 
-let items = JSON.parse(
+let initial_items = JSON.parse(
 	fs.readFileSync(path.join(__dirname, 'data', itemsFilename)).toString(),
 );
+// get a item Model
+const Item = require('./models/itemModel');
+
+// get items to database
+const getItemsData = async () => {
+	const items = await Item.find({});
+	return items;
+};
 
 /* create a new item
  * @param {Object} data
  * @return {Object} new_item
  */
-async function createItem(itemData = {}) {
-	const newItem = { ...itemData, id: items.length + 1, lastUpdate: new Date() };
-	items = [...items, newItem];
+async function createItem(itemData) {
+	const newItem = {
+		...itemData,
+		lastUpdate: new Date(),
+	};
+	await Item.create(newItem);
 	return newItem;
 }
 
@@ -21,6 +32,7 @@ async function createItem(itemData = {}) {
  * @return {Object} all items
  */
 async function getAllItems(filtre) {
+	const items = await getItemsData();
 	if (filtre && filtre === 'active') {
 		return items.filter((i) => i.isActive);
 	}
@@ -35,7 +47,8 @@ async function getAllItems(filtre) {
  * @return {Object} item
  */
 async function findItem(id) {
-	return items.find((i) => +i.id === +id);
+	const item = Item.findById(id);
+	return item;
 }
 
 /* update a item
@@ -43,8 +56,8 @@ async function findItem(id) {
  * @return {Object} updatedItem
  */
 async function updateItem(item, itemData) {
-	const updatedItem = { ...item, ...itemData, lastUpdate: new Date() };
-	items = [...items.filter((i) => i.id !== item.id), updatedItem];
+	await Item.findByIdAndUpdate(item.id, itemData);
+	const updatedItem = Item.findById(item.id);
 	return updatedItem;
 }
 
@@ -53,7 +66,7 @@ async function updateItem(item, itemData) {
  * @return nothing
  */
 async function deleteItem(item) {
-	items = items.filter((i) => i.id !== item.id);
+	await Item.findByIdAndDelete(item.id);
 }
 
 module.exports = {
@@ -62,5 +75,5 @@ module.exports = {
 	findItem,
 	updateItem,
 	deleteItem,
-	items,
+	initial_items,
 };

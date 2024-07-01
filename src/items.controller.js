@@ -21,7 +21,7 @@ async function findItem(req, res, next, id) {
  * @return {object} new item
  */
 async function createItem(req, res, next) {
-	const newItem = await service.createItem();
+	const newItem = await service.createItem(req.body);
 	return res.json({ item: newItem });
 }
 

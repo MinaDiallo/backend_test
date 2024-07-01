@@ -2,11 +2,8 @@ const mongoose = require('mongoose');
 
 const itemShema = mongoose.Schema(
 	{
-		id: {
-			type: Number,
-		},
 		isActive: {
-			type: String,
+			type: Boolean,
 		},
 	},
 	{ timestamp: true },
