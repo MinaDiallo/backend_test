@@ -13,21 +13,20 @@ The req.query property allows you to access the query parameters from the URL of
 
 # Step 5
 
-## Validate user input
+- Validate user input
 
 Validating user input is fundamental to guaranteeing the security and integrity of an application
 
-### Solutions
-- Create a script to validate inputs
-- Use express-validator librarie for apply a strict validation rules on the body and request parameters of incoming requests
+
+1- Create a script to validate inputs
+2- Use express-validator librarie for apply a strict validation rules on the body and request parameters of incoming requests
 
 
-## Secure post and put requests
-- Add autaurization with secret key to request header
+- Secure post and put requests
+1- Add autaurization with secret key to request header
 
 # Step 6
-- Use the mongoose library to define the database connection, schema and element model for the various crud operations:
--- npm install mongoose
+- Use the mongoose library to define the database connection, schema and element model for the various crud operations: npm install mongoose
 # Step 7
 - The various test collections are accessible from the file :documentation/postman/Backend_test_collections.postman_collections.json
 - From postman, import this file and test the various crud operations.
