@@ -17,12 +17,13 @@ The req.query property allows you to access the query parameters from the URL of
 
 Validating user input is fundamental to guaranteeing the security and integrity of an application
 
-
 1- Create a script to validate inputs
+
 2- Use express-validator librarie for apply a strict validation rules on the body and request parameters of incoming requests
 
 
 - Secure post and put requests
+
 1- Add autaurization with secret key to request header
 
 # Step 6
